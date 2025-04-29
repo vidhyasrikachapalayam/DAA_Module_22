@@ -11,13 +11,19 @@ To find longest common substring or subword (LCW) of two strings using dynamic p
 3. Initialize a variable ans to 0 (this will store the maximum length found)
 
 4. For each index a from 0 to len(A) - 1:
+   
        a. For each index b from 0 to len(B) - 1:
+   
        i. Initialize k = 0
+   
        ii. While both (a + k) < len(A) and (b + k) < len(B), and A[a + k] == B[b + k]:
+   
        iii.Increment k by 1
+   
        iv. Update ans as the maximum of ans and k
 
 5.Print the value of ans
+
 6.End  
 
 ## Program:
