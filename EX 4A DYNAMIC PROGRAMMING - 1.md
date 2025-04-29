@@ -20,6 +20,7 @@ Developed by: Vidhyasri K
 Register Number:  212222230170
 */
 ```
+```
 def lcs(x,y,m,n):
     if m==0 or n==0:
         return 0
@@ -30,7 +31,7 @@ def lcs(x,y,m,n):
 X = input()
 Y = input()
 print ("Length of LCS is :", lcs(X , Y, len(X), len(Y)) )
-
+```
 
 
 ## Output:
