@@ -1,65 +1,66 @@
 # EX 4B DYNAMIC PROGRAMMING – 2
-## DATE:
+## DATE: 05/04/25
+
 ## AIM:
-To find longest common substring or subword (LCW) of two strings using dynamic programming with bottom-up approach.
-
-
+To find the longest string (or strings) that is a substring (or are substrings) of two strings..
 
 ## Algorithm
-1. Start
-2. Input two strings A and B
-3. Initialize a variable ans to 0 (this will store the maximum length found)
 
-4. For each index a from 0 to len(A) - 1:
-   
-       a. For each index b from 0 to len(B) - 1:
-   
-       i. Initialize k = 0
-   
-       ii. While both (a + k) < len(A) and (b + k) < len(B), and A[a + k] == B[b + k]:
-   
-       iii.Increment k by 1
-   
-       iv. Update ans as the maximum of ans and k
+1. Input two strings X and Y of lengths m and n.
 
-5.Print the value of ans
+2. Create a 2D matrix lookup of size (m+1) × (n+1) initialized to 0.
 
-6.End  
+3. Initialize maxLength = 0 and endingIndex = m.
 
+4. For each i from 1 to m:
+
+5. For each j from 1 to n:
+
+6. If X[i-1] == Y[j-1]:
+
+7. Set lookup[i][j] = lookup[i-1][j-1] + 1
+
+8. If lookup[i][j] > maxLength:
+
+9. Update maxLength and endingIndex
+
+10. The longest common substring is from : X[endingIndex - maxLength : endingIndex].
+
+11. Return the longest common substring.
+    
 ## Program:
-```
 
-Program to implement the longest common substring or subword (LCW) of two strings using dynamic programming with bottom-up approach.
-Developed by: Vidhyasri K
+Program to implement the longest common substring problem
+
+Developed by: Vidhyasri k
+
 Register Number: 212222230170
 
 ```
-```
-def LongComSubS(st1, st2):
-  ans = 0;
-  for a in range(len(st1)):
-         for b in range(len(st2)):
-            k = 0;
-            while ((a + k) < len(st1) and (b + k) < len(st2)
-        and st1[a + k] == st2[b + k]):
-                k = k + 1;
-            ans = max(ans, k);
-  return ans;
+def LCS(X, Y, m, n):
+    maxLength = 0
+    endingIndex = m
+    lookup = [[0 for x in range(n + 1)] for y in range(m + 1)]
+    for i in range(1, m + 1):
+        for j in range(1, n + 1):
+            if X[i - 1] == Y[j - 1]:
+                lookup[i][j] = lookup[i - 1][j - 1] + 1
+                if lookup[i][j] > maxLength:
+                    maxLength = lookup[i][j]
+                    endingIndex = i
+    return X[endingIndex - maxLength: endingIndex]
 
-if __name__ == '__main__':
- 
-    A = input()
-    B = input()
-    i = len(A)
-    j = len(B)
-    print('Length of Longest Common Substring is', LongComSubS(A, B))
+X = input()
+Y = input()
+m = len(X)
+n = len(Y)
+print('The longest common substring is', LCS(X, Y, m, n))       
 ```
 
 ## Output:
-![image](https://github.com/user-attachments/assets/8d3450fc-2975-4c6c-b4a1-6a2aa2f900e7)
 
+![image](https://github.com/user-attachments/assets/03fdab8b-96e1-418b-bf32-5e3322e0657c)
 
 
 ## Result:
-Thus the program was executed successfully for finding the longest common substring or subword (LCW) of two strings using dynamic programming with bottom-up approach.
-
+Thus the program was executed successfully for finding the longest common substring .
