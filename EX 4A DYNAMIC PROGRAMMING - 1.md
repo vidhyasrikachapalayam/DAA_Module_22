@@ -1,50 +1,66 @@
 # EX 4A DYNAMIC PROGRAMMING - 1
-## DATE:
+
+## DATE: 01/04/25
+
 ## AIM:
 To find longest common subsequence using Dynamic Programming.
 
+
 ## Algorithm
-1. Start
-2. Input strings X and Y
-3. Define a function lcs(x, y, m, n):
 
-     a. If m == 0 or n == 0:
+1. Input two strings str1 and str2.
 
-     → Return 0
+2. Let m = length of str1, n = length of str2.
 
-      b. If x[m-1] == y[n-1]:
+3. Create a 2D matrix matrix of size (m+1) x (n+1) initialized to 0.
 
-      → Return 1 + lcs(x, y, m-1, n-1)
+4. For each i from 1 to m:
 
-      c. Else:
+5. For each j from 1 to n:
 
-      → Return max(lcs(x, y, m, n-1), lcs(x, y, m-1, n))
-4.  Call the function lcs(X, Y, len(X), len(Y))
-5. Print the result  
+6. If str1[i-1] == str2[j-1]:
+   
+   matrix[i][j] = 1 + matrix[i-1][j-1]
+   
+7. Else:
+
+   matrix[i][j] = max(matrix[i-1][j], matrix[i][j-1])
+
+8. Return matrix[m][n] as the length of the LCS.
+
 
 ## Program:
-```
+
 Program to implement the longest common subsequence using Dynamic Programming
-Developed by: Vidhyasri K
-Register Number:  212222230170
+
+Developed by: Vidhyasri k
+
+Register Number: 212222230170
 
 ```
+def lcs(str1 , str2):
+    m = len(str1)
+    n = len(str2)
+    matrix = [[0]*(n+1) for i in range(m+1)] 
+    for i in range(m+1):
+        for j in range(n+1):
+            if i==0 or j==0:
+                matrix[i][j] = 0
+            elif str1[i-1] == str2[j-1]:
+                matrix[i][j] = 1 + matrix[i-1][j-1]
+            else:
+                matrix[i][j] = max(matrix[i-1][j] , matrix[i][j-1])
+    return matrix[-1][-1]
+str1 = input()
+str2 = input()
+lcs_length = lcs(str1, str2)
+print("Length of LCS is : {}".format(lcs_length))
 ```
-def lcs(x,y,m,n):
-    if m==0 or n==0:
-        return 0
-    elif x[m-1]==y[n-1]:
-        return 1+lcs(x,y,m-1,n-1)
-    else:
-        return max(lcs(x,y,m,n-1),lcs(x,y,m-1,n))
-X = input()
-Y = input()
-print ("Length of LCS is :", lcs(X , Y, len(X), len(Y)) )
-```
-
 
 ## Output:
-![image](https://github.com/user-attachments/assets/bad37f59-aa0b-4f54-b957-aeed42fe71e4)
+
+![image](https://github.com/user-attachments/assets/5ecd5eed-88b5-497a-9d5f-e0f1e2763a0a)
+
 
 ## Result:
 Thus the program was executed successfully for computing the length of longest common subsequence.
